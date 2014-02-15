@@ -11,7 +11,7 @@ $buscarPreco = "select preco, quantidade from medicamento where idMedicamento=".
 $resulte = mysql_query($buscarPreco,$conn);
 $row = mysql_fetch_array($resulte);
 $precoUnitario = $row [0];
-//Verificar a quantidade exixtente
+//Verificar a quantidade existente
 $quantidadeExistente = $row [1];
 
 if ($quantidadeExistente >=$quantidade) {

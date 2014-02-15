@@ -1,8 +1,8 @@
 <?php
-$nomeMedicamento   = "Cloroquina";
+$nomeMedicamento   = "Mnhasjhd";
 $preco             = "175";
 $idTipoMedicamento = 6;
-$quantidade        = 21;
+$quantidade        = 0;
 $idFuncionario     = 8;
 
 include_once 'fontes/conexao.php';

@@ -31,7 +31,7 @@ ini_set( 'default_charset', 'utf-8');
                 echo "<br>";
                 echo $row['perfil'];
         }elseif ($_SESSION["perfil"] == 0) {
-            echo "Vocenão é administrador";
+            echo "Voce não é administrador";
 
         }else{
                     print"<script>

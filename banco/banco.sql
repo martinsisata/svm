@@ -54,3 +54,55 @@
 	create view medicamentos as select  nomeMedicamento, preco, nomeTipoMedicamento,quantidade as qtd,
 	medicamento.dataRegisto as data, nomeFuncionario as func from medicamento, tipoMedicamento, funcionario
 	where medicamento.idTipoMedicamento = tipoMedicamento.idTipoMedicamento and medicamento.idFuncionario=funcionario.idFuncionario;
+	--Nome Buscar medicamentos disponível 
+	create view getMedicamentos as select nomeMedicamento as nome, preco, nomeTipoMedicamento as tipo,
+	IF (quantidade>0,quantidade,'Não disponível') as 'qtd' 
+	from medicamento, tipoMedicamento 
+	where medicamento.idTipoMedicamento=tipoMedicamento.idTipoMedicamento;
+
+	---------------------------------------------------------------------------------------------------------------------------------------
+
+	VISTAS CRIAÇÃO DAS
+
+	criar vista Estoque de como selecionar nomeMedicamento como Medicamento, QUANTIDADE como Estoque de Medicamento de;
+	criar vista o login como selecionar nome de utilizador, Senha do funcionario;
+	---------------------------------------------------------------------------------------------------------------------------------------
+
+	CRIAÇÃO DE TRIGGERS
+
+
+	DELIMITER $ $
+
+	CREATE TRIGGER stock_insert
+ 	AFTER INSERT em venda
+	FOR EACH ROW 
+	BEGIN 
+ 	     atualização Medicamento set preco = preco - new.qtd_venda
+                         onde idMedicamentoto = new.idMed_venda;
+
+        END $ $
+
+	CREATE TRIGGER stock_delete
+ 	AFTER INSERT em venda
+	FOR EACH ROW 
+	BEGIN 
+ 	     atualização Medicamento set preco = preco - old.qtd_venda
+                         onde idMedicamentoto = new.idMed_venda;
+
+        END $ $
+
+	CREATE TRIGGER stock_update
+ 	AFTER INSERT em venda
+	FOR EACH ROW 
+	BEGIN 
+ 	     update Medicamento set preco = preco + old.qtd_venda
+                         onde idMedicamentoto = new.idMed_venda;
+             atualização Medicamento set preco = preco - new.qtd_venda
+                         onde idMedicamentoto = new.idMed_venda;
+
+        END $ $
+-------------------------------------------------------------------------------------------------------------------------------------------
+ 	
+	CRIAÇÃO DE ÍNDICES
+
+	índice criar ind_nomeMed sobre Medicamento (nomeMedicamneto);
