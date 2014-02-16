@@ -1,6 +1,6 @@
 <?php
 $idMedicamento     = 4;
-$nomeMedicamento   = "Paracetamor";
+$nomeMedicamento   = "Qualquer Coisa";
 $preco             = "175";
 $idTipoMedicamento = 6;
 $quantidade        = 21;

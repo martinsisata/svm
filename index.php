@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>login</title>
+	<title>teste</title>
 </head>
 <body>
 <form action="validarLogin.php" method="POST">

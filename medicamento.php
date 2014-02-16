@@ -21,7 +21,7 @@
 <label>Medicamentos</label>&nbsp;&nbsp;&nbsp;<input type="text" onkeyup="MostrarFuncionarios()" id="buscar">
 <hr>
 </form>
-                <h3>Perfil dos Funcionários</h2><br><br>
+                <h3>Medicamentos Existentes</h2><br><br>
     <table border="1" width = "500" height = "50">
          <tbody id="conteudo">
 
