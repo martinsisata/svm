@@ -23,13 +23,8 @@ ini_set( 'default_charset', 'utf-8');
         $_SESSION["id"] = $row["id"];
 #Verificar as categoria
         if ($_SESSION["perfil"]==1) {
-
-                echo "Voce é administrador<br>";
-                echo $row['nome'];
-                echo "<br>";
-                echo $row['id'];
-                echo "<br>";
-                echo $row['perfil'];
+            print"<script> alert('Senja Bem Vindo')</script>";
+            header("Location:home.php");
         }elseif ($_SESSION["perfil"] == 0) {
             echo "Voce não é administrador";
 

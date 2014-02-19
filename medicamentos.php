@@ -9,24 +9,41 @@ $result = mysql_query($sql,$conn);
 $conteudo="";
 ?>  
 
-            <tr>
-                <th>Nome</th>
-                <th>Preço</th>
-                <th>Tipo</th>
-                <th>Quantidade</th>
-            </tr> 
-<?php
-while ($linha=mysql_fetch_array($result)) 
-{
+           <tr class="tableHeader">
+                                <td>
+                                    NOME DO PRODUTO
+                                </td>
+                                <td>
+                                    PREÇO
+                                </td>
+                                <td>
+                                    TIPO
+                                </td>
+                                <td>
+                                    QUANTIDADE
+                                </td>
+                                <td>
+                                    AC&Ccedil;&Atilde;O
+                                </td>
+                            </tr>
 
-	$conteudo .= 	"<tr>
+<?php
+
+while ($linha=mysql_fetch_array($result)) 
+
+	$conteudo .= 	"<tr class='tableRowBrancoBrilho'>
 						<td>". $linha['nome'] ."</td>
 						<td>". $linha['preco'] ."</td>
 						<td>". $linha['tipo']."</td>
 						<td>". $linha['qtd'] ."</td>
+<td><a href='nova-venda.php' class='bntVermelhoSmall'style='color:#fff'><labe>Vender</labe></a></td>
+
+                        "
+                        ?>
 					</tr>
-					";
-}
+					 <?php
+					"";
+
 
 echo $conteudo;
 ?>
