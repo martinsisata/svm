@@ -27,17 +27,17 @@
             <!--Zona de conteudo-->
             <session id="" class="centralizarDiv">
                 <div id="zonaConteudo">
-                    <h1>Novo tipo de pagamento</h1>
+                    <h1>Novo Tipo de Medicamento</h1>
                     <br />
                     <br />
                     <!--Formulario de login-->
-                    <form name="formLogin" method="post" action="#">
+                    <form name="formLogin" method="post" action="gravarTipoMedicamento.php">
                         <table class="centralizarDiv">
                             <tr>
                                 <td>
-                                    <label>Tipo de pagamento</label>
+                                    <label>Nome do Tipo de Medicamento</label>
                                     <br />
-                                    <input type="text" name="tipoPagamento" value="" class="textBoxNormal" />
+                                    <input type="text" name="tipo" value="" class="textBoxNormal" />
                                     <br />
                                     <br />
                                 </td>

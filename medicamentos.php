@@ -9,7 +9,8 @@ $result = mysql_query($sql,$conn);
 $conteudo="";
 ?>  
 
-           <tr class="tableHeader">
+           <tr class="<?php include_once 'validarsessao.php';?>
+">
                                 <td>
                                     NOME DO PRODUTO
                                 </td>
@@ -28,7 +29,7 @@ $conteudo="";
                             </tr>
 
 <?php
-
+$id = 2;
 while ($linha=mysql_fetch_array($result)) 
 
 	$conteudo .= 	"<tr class='tableRowBrancoBrilho'>
@@ -36,7 +37,7 @@ while ($linha=mysql_fetch_array($result))
 						<td>". $linha['preco'] ."</td>
 						<td>". $linha['tipo']."</td>
 						<td>". $linha['qtd'] ."</td>
-<td><a href='nova-venda.php' class='bntVermelhoSmall'style='color:#fff'><labe>Vender</labe></a></td>
+<td><a href='nova-venda.php?id=". $linha['id']."' class='bntVermelhoSmall'style='color:#fff'><labe>Vender</labe></a></td>
 
                         "
                         ?>

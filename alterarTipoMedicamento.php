@@ -1,3 +1,4 @@
+<?php include_once 'validarsessao.php';?>
 <?php
 $idTipoMedicamento     = 4;
 $nomeTipoMedicamento   = "outro";

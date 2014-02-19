@@ -55,7 +55,7 @@
 	medicamento.dataRegisto as data, nomeFuncionario as func from medicamento, tipoMedicamento, funcionario
 	where medicamento.idTipoMedicamento = tipoMedicamento.idTipoMedicamento and medicamento.idFuncionario=funcionario.idFuncionario;
 	--Nome Buscar medicamentos disponível 
-	create view getMedicamentos as select nomeMedicamento as nome, preco, nomeTipoMedicamento as tipo,
+	create view getMedicamentos as select idMedicamento as id, nomeMedicamento as nome, preco, nomeTipoMedicamento as tipo,
 	IF (quantidade>0,quantidade,'Não disponível') as 'qtd' 
 	from medicamento, tipoMedicamento 
 	where medicamento.idTipoMedicamento=tipoMedicamento.idTipoMedicamento;

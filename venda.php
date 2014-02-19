@@ -1,3 +1,5 @@
+<?php include_once 'validarsessao.php';?>
+
 <!doctype html>
 <html lang="pt">
     <head>
@@ -18,7 +20,6 @@
                 
                 //imagem decoratiba - barra topo
                 print "<img src=\"imagens/linhaDecor.png\" width=\"100%\" />";
-
                 //Barra de menus
                 require_once('template/barra-menus.inc');
             ?>

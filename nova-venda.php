@@ -1,3 +1,12 @@
+<?php include_once 'validarsessao.php';
+error_reporting(0);
+include_once 'fontes/conexao.php';
+$sql = "SELECT * FROM getMedicamentos WHERE id =".$_GET['id'].""; 
+$result = mysql_query($sql,$conn);
+$dadosMedicamentos = mysql_fetch_array($result);
+
+
+?>
 <!doctype html>
 <html lang="pt">
     <head>
@@ -31,16 +40,15 @@
                     <br />
                     
                     <!--Formulario da nova venda-->
-                    <form name="formNovaVenda" method="get" action="#">
+                    <form name="formNovaVenda" method="get" action="novaVenda.php">
                         <div class="tableRowBrancoBrilho">
-                            <input type="hidden" name="nomeProduto" value="<?php $_REQUEST[$nomeProduto] ?>" />
+                            <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
                             <label style="color:#c45454; padding:20px">
-                                Nome do produto
-                            </label>
+<?php echo $dadosMedicamentos ['nome'];  ?></label>
                         </div>
                         <br />
                         
-                        <input type="number" class="textBoxSmall" name="quantidade" value="" />
+                        <input type="number" class="textBoxSmall" name="qtd" value="" />
                         <br />
                         <br />
                         <input type="submit" name="bntSubmit" value="Vender" class="bntVermelho" />

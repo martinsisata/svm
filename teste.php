@@ -1,3 +1,4 @@
+<?php include_once 'validarsessao.php';?>
 <?php
 $nomeFuncionario = "Manuel Ernesto";
 $dataNascimento  = "26/06/1989";

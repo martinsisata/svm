@@ -1,3 +1,4 @@
+<?php include_once 'validarsessao.php';?>
 <!doctype html>
 <html lang="pt">
     <head>
@@ -30,13 +31,13 @@
                     <br />
                     <br />
                     <!--Formulario de login-->
-                    <form name="formLogin" method="post" action="#">
+                    <form name="formLogin" method="post" action="gravarFuncionario.php">
                         <table class="centralizarDiv">
                             <tr>
                                 <td>
                                     <label>Nome</label>
                                     <br />
-                                    <input type="text" name="nomeFuncionario" value="" class="textBoxNormal" />
+                                    <input type="text" name="nome" value="" class="textBoxNormal" />
                                     <br />
                                     <br />
                                 </td>
@@ -55,7 +56,7 @@
                                 <td>
                                     <label>Data de nascimento</label>
                                     <br />
-                                    <input type="date" name="dataNascimento" value="" class="textBoxSmall" />
+                                    <input type="date" name="dataNasc" value="" class="textBoxSmall" />
                                     <br />
                                     <br />
                                 </td>
@@ -65,7 +66,7 @@
                                 <td>
                                     <label>B.I.</label>
                                     <br />
-                                    <input type="text" name="numeroBI" value="" class="textBoxSmall" />
+                                    <input type="text" name="bI" value="" class="textBoxSmall" />
                                     <br />
                                     <br />
                                 </td>
@@ -75,7 +76,7 @@
                                 <td>
                                     <label>Telefone</label>
                                     <br />
-                                    <input type="tel" name="numeroTel" value="" class="textBoxSmall" />
+                                    <input type="tel" name="tel" value="" class="textBoxSmall" />
                                     <br />
                                     <br />
                                 </td>
@@ -85,7 +86,7 @@
                                 <td>
                                     <label>Morada</label>
                                     <br />
-                                    <textarea class="textAreaNormal">
+                                    <textarea name="morada" class="textAreaNormal">
                                         
                                     </textarea>
                                     <br />
@@ -97,11 +98,11 @@
                                 <td>
                                     <label>Perfil</label>
                                     <br />
-                                    <select class="comboBoxNormal">
-                                        <option>
+                                    <select name="perfil" class="comboBoxNormal">
+                                        <option value="1">
                                             Administrador
                                         </option>
-                                        <option>
+                                        <option value="0">
                                             Funcion&aacute;rio
                                         </option>
                                     </select>

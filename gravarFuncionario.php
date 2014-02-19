@@ -1,11 +1,13 @@
+<?php include_once 'validarsessao.php';?>
 <?php
-$nomeFuncionario = "Manuel Ernesto";
-$dataNascimento  = "26/06/1989";
-$bI				 = "0015499LA039";
-$telefone		 = "925584253";
-$Morada			 = "Viana";
-$perfil			 = 0;
-$username		 = "cambota";
+error_reporting(0);
+$nomeFuncionario = $_POST ['nome'];
+$dataNascimento  = $_POST ['dataNasc'];
+$bI				 = $_POST ['bI'];
+$telefone		 = $_POST ['tel'];
+$Morada			 = $_POST ['morada'];
+$perfil			 = $_POST ['perfil'];
+$username		 = $_POST ['sobreNome'];
 $senha 			 = "1234";
 $data = explode("/", $dataNascimento);
 $data = array_reverse($data);
@@ -17,7 +19,10 @@ $sql = "insert into funcionario (nomeFuncionario, dataNascimento, bI, telefone, 
 
 if (mysql_query($sql, $conn)) 
 {
-	echo " Gravado com seucesso";
+	print "<script> 
+alert ('Gravado com Sucesso');
+location.href='novo-funcionario.php?';
+    </script>";
 }else
 {
 	echo "Erro ao Gravar<br>$sql";

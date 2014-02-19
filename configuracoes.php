@@ -1,3 +1,4 @@
+<?php include_once 'validarsessao.php';?>
 <!doctype html>
 <html lang="pt">
     <head>
@@ -37,7 +38,7 @@
                         <br>
                         <br>
                         <br>
-                        <a href="novo-tipo-pagamento.php" class="bntVermelhoBig">Adicionar Tipo de pagamento</a>
+                        <a href="novo-tipo-produto.php" class="bntVermelhoBig">Adicionar Tipo de Medicamento</a>
                         <div class="corrigirFlutuacao"></div>
                         <br>
                         <br>

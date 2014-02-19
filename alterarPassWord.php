@@ -1,3 +1,4 @@
+<?php include_once 'validarsessao.php';?>
 <?php
 $idFuncionario   = 10;
 $senha 			 = "cambota2014";

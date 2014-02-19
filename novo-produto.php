@@ -1,3 +1,4 @@
+<?php include_once 'validarsessao.php';?>
 <!doctype html>
 <html lang="pt">
     <head>
@@ -30,13 +31,13 @@
                     <br />
                     <br />
                     <!--Formulario de login-->
-                    <form name="formLogin" method="post" action="#">
+                    <form name="formLogin" method="post" action="gravarMedicamento.php">
                         <table class="centralizarDiv">
                             <tr>
                                 <td>
                                     <label>Nome do produto</label>
                                     <br />
-                                    <input type="text" name="nomeProduto" value="" class="textBoxNormal" />
+                                    <input type="text" name="nome" value="" class="textBoxNormal" required />
                                     <br />
                                     <br />
                                 </td>
@@ -45,7 +46,7 @@
                                 <td>
                                     <label>Preço (Só números)</label>
                                     <br />
-                                    <input type="number" name="preco" value="" class="textBoxNormal" />
+                                    <input type="number" name="preco" value="" class="textBoxNormal" required />
                                     <br />
                                     <br />
                                 </td>
@@ -54,16 +55,21 @@
                                 <td>
                                     <label>Tipo</label>
                                     <br />
-                                    <select class="comboBoxNormal">
-                                        <option>
-                                            Analgésico
-                                        </option>
-                                        <option>
-                                            Antí-inflamatórios
-                                        </option>
-                                        <option>
-                                            ...
-                                        </option>
+                            <!--Buscar da base de dados os produtos -->
+                                    <select name="tipo" class="comboBoxNormal" required>
+                                    <option value="">Seleciona</option>
+<?php
+include_once 'fontes/conexao.php';
+$tipoMedicamento= "select * from tipoMedicamento";
+$resulta= mysql_query($tipoMedicamento,$conn);
+while ($linha = mysql_fetch_array($resulta)) {
+    
+
+    ?>
+        <option value="<?php echo $linha ['0'];?>"><?php echo $linha ['1'];?></option>
+        <?php
+    }
+        ?>
                                     </select>
                                     <br />
                                     <br />
@@ -73,7 +79,7 @@
                                 <td>
                                     <label>Quantidade (Só números)</label>
                                     <br />
-                                    <input type="number" name="quantidade" value="" class="textBoxNormal" />
+                                    <input type="number" name="qtd" value="" class="textBoxNormal" required/>
                                 </td>
                             </tr>
                             <tr>

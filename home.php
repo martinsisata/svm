@@ -1,3 +1,4 @@
+<?php include_once 'validarsessao.php';?>
 <!doctype html>
 <html lang="pt">
     <head>
@@ -13,6 +14,7 @@
         <div id="conteinerPrincipal">
             <?php
                 //Barra topo do sistema
+            
                 require_once('template/topo.inc');
                 
                 //imagem decoratiba - barra topo

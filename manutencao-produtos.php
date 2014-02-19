@@ -1,3 +1,4 @@
+<?php include_once 'validarsessao.php';?>
 <!doctype html>
 <html lang="pt">
     <head>

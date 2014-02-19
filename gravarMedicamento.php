@@ -1,9 +1,10 @@
-<?php
-$nomeMedicamento   = "Mnhasjhd";
-$preco             = "175";
-$idTipoMedicamento = 6;
-$quantidade        = 0;
-$idFuncionario     = 8;
+<?php include_once 'validarsessao.php';
+error_reporting(0);
+$nomeMedicamento   = $_POST ['nome'];
+$preco             = $_POST ['preco'];
+$idTipoMedicamento = $_POST ['tipo'];
+$quantidade        = $_POST ['qtd'];
+$idFuncionario     = $_SESSION ['id'];
 
 include_once 'fontes/conexao.php';
 
@@ -12,7 +13,10 @@ values('".$nomeMedicamento."','".$preco."',".$idTipoMedicamento.",".$quantidade.
 
 if (mysql_query($sql, $conn)) 
 {
-	echo " Gravado com seucesso";
+	print "<script> 
+alert ('Medicamento $nomeMedicamento gravado com Sucesso');
+location.href='novo-produto.php?';
+    </script>";
 }else
 {
 	echo "Erro ao Gravar<br>$sql";

@@ -1,8 +1,11 @@
-<?php
+<meta charset="utf-8">
+<?php include_once 'validarsessao.php';
+error_reporting(0);
+$idFunc = $_SESSION["id"];
 $descricao       ="1 uma caixa";
-$quantidade      = 1;
-$idMedicamento   = 4;
-$idFuncionario   = 8;
+$quantidade      = $_GET ['qtd'];
+$idMedicamento   = $_GET ['id'];
+$idFuncionario   = $idFunc;
 $data = date('Y-m-d');
 include_once 'fontes/conexao.php';
 
@@ -30,7 +33,10 @@ values('".$precoUnitario."','".$descricao."',".$quantidade.",'".$total."',".$idM
 
 if (mysql_query($sql, $conn)) 
 {
-	echo " Gravado com seucesso";
+	print "<script> 
+alert ('venda efectuado com sucesso');
+location.href='venda.php?';
+    </script>";
 }else
 {
 	echo "Erro ao Gravar<br>$sql";
@@ -41,7 +47,10 @@ if (mysql_query($sql, $conn))
 
 }else
 {
-	echo "esta mal";
+	print "<script> 
+alert ('Produto não tem disponível ou a Quantidade pretendidade é superior a existente');
+location.href='venda.php?';
+    </script>";
 }
 
 ?>
