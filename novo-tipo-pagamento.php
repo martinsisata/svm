@@ -13,42 +13,40 @@
         <div id="conteinerPrincipal">
             
             <?php
-                //barra topo do sistema
+                //topo do sistema
                 require_once('template/topo.inc');
-            ?>
-            <!--Banner Publicitario-->
-            <div id="marketing-banner">
-                <img src="imagens/marketingBanner.png" alt="Marketing Banner" width="100%" />
-            </div>
 
+                //imagem decoratiba - barra topo
+                print "<img src=\"imagens/linhaDecor.png\" width=\"100%\" />";
+
+                //barra de menus
+                require_once('template/barra-menus.inc');
+            ?>
+    
             <!--Zona de conteudo-->
             <session id="" class="centralizarDiv">
                 <div id="zonaConteudo">
-                    <h1>Bem vindo!</h1>
+                    <h1>Novo tipo de pagamento</h1>
                     <br />
                     <br />
                     <!--Formulario de login-->
-                    <form name="formLogin" method="post" action="validarLogin.php">
+                    <form name="formLogin" method="post" action="#">
                         <table class="centralizarDiv">
                             <tr>
                                 <td>
-                                    <label>Login</label>
+                                    <label>Tipo de pagamento</label>
                                     <br />
-                                    <input type="text" name="user" value="" class="textBoxNormal" />
+                                    <input type="text" name="tipoPagamento" value="" class="textBoxNormal" />
+                                    <br />
+                                    <br />
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <label>Senha</label>
-                                    <br />
-                                    <input type="password" name="senha" value="" class="textBoxNormal" />
-                                </td>
-                            </tr>
+                            
                             <tr>
                                 <td>
                                     <br />
                                     <center>
-                                        <input type="submit" name="bntSubmit" value="Entrar" class="bntVermelho" />
+                                        <input type="submit" name="bntSubmit" value="Gravar" class="bntVermelho" />
                                     </center>
                                 </td>
                             </tr>
@@ -62,10 +60,14 @@
             </session>
            
             
-            <?php
-                //rodape do sistema
-                require_once('template/footer.inc');
-            ?>
+            <!--Espaçamento parao rodape-->
+            <br />
+            <br />
+            <br />
+            <!--Rodape padrao-->
+            <footer id="rodape">
+                <p>Todos direitos reservados.2014</p>
+            </footer>
         </div><!--Fim conteinerPrincipal-->
         <br />
     </body>
