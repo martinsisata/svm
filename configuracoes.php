@@ -46,7 +46,21 @@
                         <a href="novo-funcionario.php" class="bntVermelhoBig">Adicionar Funcionário</a>
                         <br>
                         <br>
+                        <br><br>
+                        <a href="add-stoque.php" class="bntVermelhoBig">Adicionar Estoque</a>
                         <br>
+                        <br>
+                        <br><br>
+    <!--
+                        <a href="novo-funcionario.php" class="bntVermelhoBig">Adicionar Funcionário</a>
+                        <br>
+                        <br>
+                        <br><br>
+                        <a href="novo-funcionario.php" class="bntVermelhoBig">Adicionar Funcionário</a>
+                        <br>
+                        <br>
+                        <br>
+                        !-->
                     </div>
                     <div class="corrigirFlutuacao"></div>     
                 </div><!--Fim zonaConteudo-->

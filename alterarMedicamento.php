@@ -1,11 +1,11 @@
-<?php include_once 'validarsessao.php';?>
-<?php
-$idMedicamento     = 4;
-$nomeMedicamento   = "Qualquer Coisa";
-$preco             = "175";
-$idTipoMedicamento = 6;
-$quantidade        = 21;
-$idFuncionario     = 8;
+<?php include_once 'validarsessao.php';
+
+$idMedicamento     = $_POST ['id'];
+$nomeMedicamento   = $_POST ['nomeProduto'];
+$preco             = $_POST ['preco'];
+$idTipoMedicamento = $_POST ['tipo'];
+$quantidade        = $_POST ['quantidade'];
+$idFuncionario     = $_SESSION ['id'];
 
 include_once 'fontes/conexao.php';
 
@@ -19,7 +19,10 @@ $sql = "update medicamento set
 
 if (mysql_query($sql, $conn)) 
 {
-	echo " Actualizado com sucesso!";
+	print "<script> 
+alert ('Medicamento $nomeMedicamento Editado com Sucesso');
+location.href='manutencao-produtos.php';
+    </script>";
 }else
 {
 	echo "Erro ao Actualizar<br>$sql";

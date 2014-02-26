@@ -1,16 +1,16 @@
 <meta charset="utf-8">
 <?php
+include_once 'validarsessao.php';
 error_reporting(0);
 include_once 'fontes/conexao.php';
-	 $sql = "SELECT * FROM getMedicamentos WHERE nome like '".$_GET['busca']."%'"; 
+	 $sql = "SELECT * FROM getMedicamentos WHERE nome like '".$_GET['busca']."%' order by nome"; 
 
 $result = mysql_query($sql,$conn);
 
 $conteudo="";
 ?>  
 
-           <tr class="<?php include_once 'validarsessao.php';?>
-">
+                            <tr class="tableHeader">
                                 <td>
                                     NOME DO PRODUTO
                                 </td>
@@ -29,12 +29,24 @@ $conteudo="";
                             </tr>
 
 <?php
-$id = 2;
-while ($linha=mysql_fetch_array($result)) 
 
-	$conteudo .= 	"<tr class='tableRowBrancoBrilho'>
+#while ($linha=mysql_fetch_array($result)) 
+$row=mysql_num_rows($result);
+     for($i=0; $i<$row; $i++){
+        $linha=mysql_fetch_array($result);
+        $n = $i%2;
+        if($n == 1)
+        {
+            $estilo = 'tableRowBrancoBrilho';
+        }
+        else
+        {
+            $estilo = 'tableRowBrancoFosco';
+            }
+
+	$conteudo .= 	"<tr class='$estilo'>
 						<td>". $linha['nome'] ."</td>
-						<td>". $linha['preco'] ."</td>
+						<td>". $linha['preco'] ." Kz</td>
 						<td>". $linha['tipo']."</td>
 						<td>". $linha['qtd'] ."</td>
 <td><a href='nova-venda.php?id=". $linha['id']."' class='bntVermelhoSmall'style='color:#fff'><labe>Vender</labe></a></td>
@@ -45,6 +57,6 @@ while ($linha=mysql_fetch_array($result))
 					 <?php
 					"";
 
-
+}
 echo $conteudo;
 ?>

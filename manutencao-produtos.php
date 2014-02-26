@@ -1,4 +1,7 @@
-<?php include_once 'validarsessao.php';?>
+<?php include_once 'validarsessao.php';
+
+error_reporting(0);
+?>
 <!doctype html>
 <html lang="pt">
     <head>
@@ -7,6 +10,23 @@
         <meta name="Description" content="home - Sistema de gestão farmacéutica" />
         
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+           <script type="text/javascript">
+            
+            function excluir(id){
+                if(confirm('Deseja realmente excluir Este Produto ?')){
+                    //redirecionamento EM JAVASCRIPT
+                    location.href = "apagar-produto.php?id="+id;
+                }
+            }
+
+            function editar(id){
+                if(confirm('Deseja realmente editar Este Produto ?')){
+                    //redirecionamento EM JAVASCRIPT
+                    location.href = "editar-produto.php?id="+id;
+                }
+            }
+            
+        </script>
     </head>
     
     <body>
@@ -36,122 +56,67 @@
                         <table class="centralizarDiv">
                             <tr>
                                 <!--Primeiro filtro-->
-                                <td>
-                                    <select class="comboBoxNormal">
-                                        <option>
-                                            Todos do filtro1
-                                        </option>
-                                        <option>
-                                            Filtro 1-1
-                                        </option>
-                                        <option>
-                                            Filtro 1-2
-                                        </option>
-                                    </select>
-                                </td>
+                   
                                 
                                 <!--Segundo filtro-->
-                                <td>
-                                    <select class="comboBoxNormal">
-                                        <option>
-                                            Todos do filtro2
-                                        </option>
-                                        <option>
-                                            filtro 1-2
-                                        </option>
-                                        <option>
-                                            Tipo2 2-3
-                                        </option>
-                                    </select>
-                                </td>
+     
                                 
                                 <!--Terceiro filtro-->
-                                <td>
-                                    <input type="date" name="" value="" placeholder="Apartir de..." class="textBoxSmall" />
-                                </td>
-                                
-                                <td>
-                                    <input type="submit" name="bntSubmitNovoProduto" value="Pesquisar" class="bntVermelho" />
-                                </td>
+
                             </tr>
                         </table>
                     </form>
                     <br />
                         <table class="table centralizarDiv">
-                            <tr>
-                                <td style="padding:6px 0px 24px 0px; color:#fff">
-                                    Resultados da pesquisa:
-                                </td>
-                            </tr>
+
                             <!--Cabecalho da listagem-->
-                            <tr class="tableHeader">
+                              <tr class="tableHeader">
                                 <td>
                                     NOME DO PRODUTO
                                 </td>
                                 <td>
-                                    QUANTIDADE
+                                    PREÇO
                                 </td>
                                 <td>
                                     TIPO
                                 </td>
                                 <td>
-                                    PRE&Ccedil;O
+                                    QUANTIDADE
                                 </td>
                                 <td>
                                     AC&Ccedil;&Atilde;O
                                 </td>
                             </tr>
-                            <br />
-                            <br />
-                            
-                            <!--Estilo dinamico para as linhas das tabelas-->
-                            <?php
-                                for($i=0; $i<=20; $i++){
-                                    $n = $i%2;
-                                    if($n == 1){
-                                        $estilo = 'tableRowBrancoBrilho';
-                                    }
-                                    else{
-                                        $estilo = 'tableRowBrancoFosco';
-                                    }
-                            ?>
-                            
-                            <!--Conteudo-->
-                            <tr class="<?php print $estilo?>">
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    <a href="editar-produto.php">Editar</a> | <a href="apagar-produto.php">Apagar</a>
-                                </td>
-                            </tr>
-                            
-                            <tr class="<?php print $estilo?>">
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    <a href="editar-produto.php">Editar</a> | <a href="apagar-produto.php">Apagar</a>
-                                </td>
-                            </tr>
+
+<?php
+include_once 'fontes/conexao.php';
+$sql = "SELECT * FROM getMedicamentos nome order by nome"; 
+$result = mysql_query($sql,$conn);
+
+#while ($linha=mysql_fetch_array($result)) 
+$row=mysql_num_rows($result);
+
+     for($i=0; $i<$row; $i++){
+        $linha=mysql_fetch_array($result);
+        $n = $i%2;
+        if($n == 1)
+        {
+            $estilo = 'tableRowBrancoBrilho';
+        }
+        else
+        {
+            $estilo = 'tableRowBrancoFosco';
+            } ?>
+
+               <tr class='<?php echo $estilo; ?>'>
+                        <td><?php echo $linha['nome']; ?></td>
+                        <td><?php echo $linha['preco']; ?> Kz</td>
+                        <td><?php echo $linha['tipo']; ?></td>
+                        <td><?php echo $linha['qtd']; ?></td>
+                        <td>
+                        <a href="#" onclick="editar(<?php echo $linha ['id'];?>);">Editar</a> | <a href="#" onclick="excluir(<?php echo $linha ['id'];?>);">Apagar</a>
+                        </td>
+               </tr>
                         
                             <?php
                                 }

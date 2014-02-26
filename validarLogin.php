@@ -23,8 +23,17 @@ ini_set( 'default_charset', 'utf-8');
         $_SESSION["id"] = $row["id"];
 #Verificar as categoria
         if ($_SESSION["perfil"]==1) {
-            print"<script> alert('Senja Bem Vindo')</script>";
+            $dataActual = date('d-m-Y');
+            $hora = date('H:i');
+            $idFuncionario = $_SESSION ['id'];
+            $entrada = "insert into controleUser values (null,1,'".$dataActual."','".$hora."',".$idFuncionario.") ";
+            if (mysql_query($entrada,$conn)) {
+                print"<script> alert('Senja Bem Vindo')</script>";
             header("Location:home.php");
+            }else{
+                echo "não gravou";
+            }
+            
         }elseif ($_SESSION["perfil"] == 0) {
             echo "Voce não é administrador";
 

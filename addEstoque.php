@@ -1,8 +1,8 @@
-<?php include_once 'validarsessao.php';?>
-<?php
-
-$idMedicamento     = 4;
-$quantidade        = 21;
+<?php 
+include_once 'validarsessao.php';
+error_reporting(0);
+$idMedicamento     = $_POST ['id'];
+$quantidade        = $_POST ['qtd'];
 
 include_once 'fontes/conexao.php';
 //Buscar a quantidade exixte
@@ -17,12 +17,12 @@ $qtdActualizada = $qtdExistente + $quantidade;
 $updateQuantidade ="update medicamento set quantidade=".$qtdActualizada." where idMedicamento =".$idMedicamento."";
 
 if (mysql_query($updateQuantidade,$conn)) {
-	echo "Actualizado";
+	print "<script> 
+alert ('Adicionado com Sucesso');
+location.href='add-stoque.php?';
+    </script>";
 }else{
 	echo "erro<br>$updateQuantidade";
 }
-
-
-
 
 ?>

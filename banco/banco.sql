@@ -45,12 +45,23 @@
 			foreign key (idFuncionario) references funcionario(idFuncionario),
 			foreign key (idMedicamento) references medicamento(idMedicamento)
 			);
+	create table controleUser (
+		idControleuser int primary key auto_increment,
+		tipo int,
+		data varchar(50),
+		hora varchar(50),
+		idFuncionario int
+		);
 		---Views
+	--vendas
 	create view vendas as select precoUnitario as preco, descricao, venda.quantidade as qtd, total, 
 	medicamento.nomeMedicamento as nome, dataVendida, nomeFuncionario as func from venda, medicamento, funcionario
 	where venda.idMedicamento = medicamento.idMedicamento and venda.idFuncionario=funcionario.idFuncionario;
+	--Estoque
 	create view estoque as select nomeMedicamento as medicamento, quantidade as estoque from medicamento;
+	--Credenciais dos usuários
 	create view login as select idFuncionario as id, nomeFuncionario as nome, username, senha, perfil from funcionario;
+	--Medicamentos incluido quem cadastrou e o tipo de Medicamentos
 	create view medicamentos as select  nomeMedicamento, preco, nomeTipoMedicamento,quantidade as qtd,
 	medicamento.dataRegisto as data, nomeFuncionario as func from medicamento, tipoMedicamento, funcionario
 	where medicamento.idTipoMedicamento = tipoMedicamento.idTipoMedicamento and medicamento.idFuncionario=funcionario.idFuncionario;
@@ -59,50 +70,14 @@
 	IF (quantidade>0,quantidade,'Não disponível') as 'qtd' 
 	from medicamento, tipoMedicamento 
 	where medicamento.idTipoMedicamento=tipoMedicamento.idTipoMedicamento;
-
-	---------------------------------------------------------------------------------------------------------------------------------------
-
-	VISTAS CRIAÇÃO DAS
-
-	criar vista Estoque de como selecionar nomeMedicamento como Medicamento, QUANTIDADE como Estoque de Medicamento de;
-	criar vista o login como selecionar nome de utilizador, Senha do funcionario;
-	---------------------------------------------------------------------------------------------------------------------------------------
-
-	CRIAÇÃO DE TRIGGERS
+	--Controle de assiduida
+	create view controleAssiduidade as select  funcionario.nomeFuncionario as nome, controleUser.data , hora,
+		case tipo
+		when '1' then 'Entrada'
+		when '2' then 'Saida'
+		else 'Nao encontrado'
+		end as tipo
+	from controleUser, funcionario where controleUser.idFuncionario = funcionario.idFuncionario;
 
 
-	DELIMITER $ $
 
-	CREATE TRIGGER stock_insert
- 	AFTER INSERT em venda
-	FOR EACH ROW 
-	BEGIN 
- 	     atualização Medicamento set preco = preco - new.qtd_venda
-                         onde idMedicamentoto = new.idMed_venda;
-
-        END $ $
-
-	CREATE TRIGGER stock_delete
- 	AFTER INSERT em venda
-	FOR EACH ROW 
-	BEGIN 
- 	     atualização Medicamento set preco = preco - old.qtd_venda
-                         onde idMedicamentoto = new.idMed_venda;
-
-        END $ $
-
-	CREATE TRIGGER stock_update
- 	AFTER INSERT em venda
-	FOR EACH ROW 
-	BEGIN 
- 	     update Medicamento set preco = preco + old.qtd_venda
-                         onde idMedicamentoto = new.idMed_venda;
-             atualização Medicamento set preco = preco - new.qtd_venda
-                         onde idMedicamentoto = new.idMed_venda;
-
-        END $ $
--------------------------------------------------------------------------------------------------------------------------------------------
- 	
-	CRIAÇÃO DE ÍNDICES
-
-	índice criar ind_nomeMed sobre Medicamento (nomeMedicamneto);

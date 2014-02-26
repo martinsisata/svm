@@ -1,4 +1,9 @@
-<?php include_once 'validarsessao.php';?>
+<?php include_once 'validarsessao.php';
+include_once 'fontes/conexao.php';
+$sql = "select *, tipoMedicamento.idTipoMedicamento as idTipo, tipoMedicamento.nomeTipoMedicamento as tipo from medicamento, tipoMedicamento where medicamento.idTipoMedicamento = tipoMedicamento.idTipoMedicamento and idMedicamento=".$_GET['id']."";
+$result = mysql_query($sql,$conn);
+$linha  = mysql_fetch_array($result);
+?>
 <!doctype html>
 <html lang="pt">
     <head>
@@ -31,13 +36,14 @@
                     <br />
                     <br />
                     <!--Formulario de login-->
-                    <form name="formLogin" method="post" action="#">
+                    <form name="formLogin" method="post" action="alterarMedicamento.php">
                         <table class="centralizarDiv">
                             <tr>
                                 <td>
                                     <label>Nome do produto</label>
                                     <br />
-                                    <input type="text" name="nomeProduto" value="" class="textBoxNormal" />
+                                    <input type="text" name="nomeProduto" value="<?php echo $linha ['nomeMedicamento']; ?>" class="textBoxNormal" />
+                                    <input type="hidden" name="id" value="<?php echo $linha ['idMedicamento']; ?>" class="textBoxNormal" />
                                     <br />
                                     <br />
                                 </td>
@@ -46,7 +52,7 @@
                                 <td>
                                     <label>Preço (Só números)</label>
                                     <br />
-                                    <input type="number" name="preco" value="" class="textBoxNormal" />
+                                    <input type="number" name="preco" value="<?php echo $linha ['preco']; ?>" class="textBoxNormal" />
                                     <br />
                                     <br />
                                 </td>
@@ -55,16 +61,21 @@
                                 <td>
                                     <label>Tipo</label>
                                     <br />
-                                    <select class="comboBoxNormal">
-                                        <option>
-                                            Analgésico
-                                        </option>
-                                        <option>
-                                            Antí-inflamatórios
-                                        </option>
-                                        <option>
-                                            ...
-                                        </option>
+                            <!--Buscar da base de dados os produtos -->
+                                    <select name="tipo" class="comboBoxNormal" required>
+                                    <option value="<?php echo $linha ['idTipo']; ?>"><?php echo $linha ['tipo']; ?></option>
+<?php
+include_once 'fontes/conexao.php';
+$tipoMedicamento= "select * from tipoMedicamento";
+$resulta= mysql_query($tipoMedicamento,$conn);
+while ($linha2 = mysql_fetch_array($resulta)) {
+    
+
+    ?>
+        <option value="<?php echo $linha2 ['0'];?>"><?php echo $linha2 ['1'];?></option>
+        <?php
+    }
+        ?>
                                     </select>
                                     <br />
                                     <br />
@@ -74,14 +85,14 @@
                                 <td>
                                     <label>Quantidade (Só números)</label>
                                     <br />
-                                    <input type="number" name="quantidade" value="" class="textBoxNormal" />
+                                    <input type="number" name="quantidade" value="<?php echo $linha ['quantidade']; ?>" class="textBoxNormal" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <br />
                                     <center>
-                                        <a href="listagem-produtos.php" class="bntAzul"><label>Cancelar</label></a>
+                                        <a href="manutencao-produtos.php" class="bntAzul"><label>Cancelar</label></a>
                                         <input type="submit" name="bntSubmit" value="Alterar" class="bntVermelho" />
                                     </center>
                                 </td>
